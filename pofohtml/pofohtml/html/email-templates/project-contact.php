@@ -9,8 +9,8 @@
 	$budget=$_POST["budget"];
 	
 	// Email Receiver Address
-	$receiver="info@yourdomain.com";
-	$subject="Contact form details";
+	$receiver="daniel@cargaexpress.com.uy";
+	$subject="Contacto via Web";
 
 	$message = "
 	<html>
@@ -20,7 +20,7 @@
 	<body>
 	<table width='50%' border='0' align='center' cellpadding='0' cellspacing='0'>
 	<tr>
-	<td colspan='2' align='center' valign='top'><img style=' margin-top: 15px; ' src='http://www.yourdomain.com/images/logo-email.png' ></td>
+	<td colspan='2' align='center' valign='top'><img style=' margin-top: 15px; ' src='/home/daniel/Descargas/logo-email.png' ></td>
 	</tr>
 	<tr>
 	<td width='50%' align='right'>&nbsp;</td>
@@ -58,12 +58,12 @@ $headers .= 'From: <'.$from.'>' . "\r\n";
    if(mail($receiver,$subject,$message,$headers))  
    {
 	   //Success Message
-      echo "The message has been sent!";
+      echo "El mensaje ha sido enviado!";
    }
    else
    {	
    	 //Fail Message
-      echo "The message could not been sent!";
+      echo "El mensaje no pudo ser enviado!";
    }
 
 }
