@@ -3,9 +3,6 @@
   console.log("ENTRO AL PHP");
   if(isset($_POST['email'])){
 
-	echo "NETRO AL PHP";
-	console.log("NETRO AL PHP");
-	  
 	$name =$_POST["name"];
 	$from =$_POST["email"];
 	$phone=$_POST["phone"];
