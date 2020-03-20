@@ -70,6 +70,8 @@
     h5 {font-size:27px; line-height:32px}
     h6 {font-size:22px; line-height:27px}
 
+    .md-bg-cargaexpress {background-color:#001F5B;}
+
     /*text-alignment*/
     .md-text-center {text-align: center;}
     .md-text-left {text-align: left;}
@@ -1505,6 +1507,8 @@
     .sm-col-3-nth .col-sm-4:nth-child(3n+1) {clear: left;}
     .sm-col-4-nth .col-sm-3:nth-child(4n+1) {clear: left;}
     .sm-center-col {float: none; margin: 0 auto;}
+
+    .sm-bg-cargaexpress {background-color:#ffffff;}
 
     /*float*/
     .sm-float-left{float: left !important}
@@ -3080,6 +3084,8 @@
 @media (max-width: 767px) {
 
     body { font-size: 12px; line-height: 20px}
+
+    .xs-bg-cargaexpress {background-color:#ffffff}
 
     h1, h2, h3, h4, h5, h6 {margin:0 0 17px; padding:0; letter-spacing: 0; font-weight: 400;}
     h1 {font-size:37px; line-height: 42px;}
