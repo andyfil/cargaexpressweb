@@ -1630,7 +1630,7 @@ $(document).ready(function () {
         if (error) {
             $.ajax({
                 type: "POST",
-                url: "email-templates/subscribe-newsletter.php",
+                url: "classes/subscribe-newsletter.php",
                 data: $("#subscribenewsletterform").serialize(),
                 success: function (result) {
                     // Un-comment below code to redirect user to thank you page.
@@ -1668,7 +1668,7 @@ $(document).ready(function () {
         if (error) {
             $.ajax({
                 type: "POST",
-                url: "email-templates/subscribe-newsletter.php",
+                url: "classes/subscribe-newsletter.php",
                 data: $("#subscribenewsletterform2").serialize(),
                 success: function (result) {
                     // Un-comment below code to redirect user to thank you page.
@@ -1708,7 +1708,7 @@ $(document).ready(function () {
         if (error) {
             $.ajax({
                 type: "POST",
-                url: "email-templates/contact.php",
+                url: "classes/contact.php",
                 data: $("#contact-form").serialize(),
                 success: function (result) {
                     // Un-comment below code to redirect user to thank you page.
@@ -1753,7 +1753,7 @@ $(document).ready(function () {
         if (error) {
             $.ajax({
                 type: "POST",
-                url: "email-templates/contact.php",
+                url: "classes/contact.php",
                 data: $("#contact-form-2").serialize(),
                 success: function (result) {
                     // Un-comment below code to redirect user to thank you page.
@@ -1798,7 +1798,7 @@ $(document).ready(function () {
         if (error) {
             $.ajax({
                 type: "POST",
-                url: "email-templates/contact.php",
+                url: "classes/contact.php",
                 data: $("#contact-form-3").serialize(),
                 success: function (result) {
                     // Un-comment below code to redirect user to thank you page.
@@ -1842,7 +1842,7 @@ $(document).ready(function () {
         if (error) {
             $.ajax({
                 type: "POST",
-                url: "email-templates/project-contact.php",
+                url: "classes/project-contact.php",
                 data: $("#project-contact-form").serialize(),
                 success: function (result) {
                     // Un-comment below code to redirect user to thank you page.
@@ -1887,7 +1887,7 @@ $(document).ready(function () {
         if (error) {
             $.ajax({
                 type: "POST",
-                url: "email-templates/project-contact.php",
+                url: "classes/project-contact.php",
                 data: $("#project-contact-form-4").serialize(),
                 success: function (result) {
                     // Un-comment below code to redirect user to thank you page.
