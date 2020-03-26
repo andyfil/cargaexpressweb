@@ -1,9 +1,12 @@
 
 <?php
 
-require_once 'classes/mail.php';
-require_once 'classes/class.phpmailer.php';
-require_once 'classes/class.smtp.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 if(isset($_POST['email'])){
 
@@ -13,49 +16,76 @@ if(isset($_POST['email'])){
 	$comment=$_POST["comment"];
 	$budget=$_POST["budget"];
 	
-	// Email Receiver Address
-	$receiver="info@cargaexpress.com.uy";
+	// LO NUEVO PARA AWS
+	$bodyText = "<b>".$name."</b> servicio:".$budget." <br /><br />escribió:".$comment." <br> <br>Desde: ".$from."<br/> Telefono:".$phone;
+	$sender = "info@cargaexpress.com.uy";
 	$subject="Contacto via Web";
 
-	// Always set content-type when sending HTML email
-	$headers = "MIME-Version: 1.0" . "\r\n";
-	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	// More headers
-	$headers .= 'From: <'.$from.'>' . "\r\n";
+	// php mailer last version
+	// Replace sender@example.com with your "From" address.
+	// This address must be verified with Amazon SES.
+	$senderName = $name;
+	// Replace recipient@example.com with a "To" address. If your account
+	// is still in the sandbox, this address must be verified.
+	$recipient = 'info@cargaexpress.com.uy';
+	$replyToName = $name;
+	$replyToEmail = $from; 
+	// Replace smtp_username with your Amazon SES SMTP user name.
+	$usernameSmtp = 'AKIA5DC55FYN4CSLNN6G';
+	// Replace smtp_password with your Amazon SES SMTP password.
+	$passwordSmtp = 'BCKLn065TCA6CjmEi77OCho2uWwH9TGDxAWNl/BMNhGJ';
+	// Specify a configuration set. If you do not want to use a configuration
+	// set, comment or remove the next line.
+	//$configurationSet = 'ConfigSet';
 
-	$message = "$name.": ".$comment;
-	$mail = new PHPMailer();
-	$mail-> IsSMTP();
+	// If you're using Amazon SES in a region other than US West (Oregon),
+	// replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
+	// endpoint in the appropriate region.
+	$host = 'email-smtp.us-east-1.amazonaws.com';
+	$port = 587;
+	// The HTML-formatted body of the email
+	$bodyHtml = str_replace('\n',"<br />",$mensaje);
 
-	$mail->Host='s2smtpout.secureserver.net';
+	$mail = new PHPMailer(true);
+	
+	try {
+		// Specify the SMTP settings.
+		$mail->isSMTP();
+		$mail->setFrom($sender, $senderName);
+		$mail->Username   = $usernameSmtp;
+		$mail->Password   = $passwordSmtp;
+		$mail->Host       = $host;
+		$mail->Port       = $port;
+		$mail->SMTPAuth   = true;
+		$mail->SMTPSecure = 'tls';
+		//$mail->addCustomHeader('X-SES-CONFIGURATION-SET', $configurationSet);
+		//$mail->SMTPDebug = 4;
 
+		// Specify the message recipients.
+		$mail->addAddress($recipient);
+		// You can also add CC, BCC, and additional To recipients here.
+		$mail->addReplyTo($replyToEmail, $replyToName);
 
-	if($from <> '')  $mail-> From =$from;
-	else $mail-> From = 'info@cargaexpress.com.uy'; //direccion que ve el usuario
-
-	if($tname == '') $mail-> FromName = 'Web Carga Express';
-	else $mail->FromName = $tname;
+		// Specify the content of the message.
+		$mail->isHTML(true);
+		$mail->Subject    = $subject;
+		$mail->Body       = $bodyHtml;
+		$mail->AltBody    = $bodyText;
+		$sent = $mail->Send();
+		if($sent) {
+			//Success Message
+			echo "El mensaje ha sido enviado!";
+			return true;
+		}
+		else {
+			$errorDesc = $mail->ErrorInfo;
+			#echo $errorDesc;
+			return false;
+		}		
+	
+	
+	  }
 		
-	$mail-> Subject = utf8_decode("Info Caega Express Web");
-	$mail-> AltBody = utf8_decode($message);
-	$mail-> MsgHTML(utf8_decode("");				
-	$mail-> AddAddress($receiver);
-	$mail->IsHTML(true);
-	# print_r($mail);		
-				
-	$sent=$mail->Send();
-
-	if($sent) {
-		//Success Message
-		echo "El mensaje ha sido enviado!";
-		return true;
-	}
-	else {
-		$errorDesc = $mail->ErrorInfo;
-		#echo $errorDesc;
-		return false;
-	}		
-
-
-  }
+}	
 ?>
+                

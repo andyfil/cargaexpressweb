@@ -31,28 +31,10 @@ Class Mail{
 				
 				$mail = new PHPMailer();
 				$mail-> IsSMTP();
-    				//$mail->Host       = "smtp.gmail.com";
-				//$mail->Port       = 465;
-				//$mail->SMTPAuth   = true;
-                                //$mail->SMTPSecure = 'ssl';
-				//$mail->Username   = "";
-    				//$mail->Password   = "";
+				
+				$mail->Host='s2smtpout.secureserver.net';
 			
-			
-				$mail->Host       = "email-smtp.us-east-1.amazonaws.com";
-				$mail->SMTPAuth = true;
-				$mail->SMTPSecure = 'tls';	
-				$mail->Port = 587;
-				$mail->SetLanguage("en", 'classes/PHPMailer/language/');
-
-				// Replace smtp_username with your Amazon SES SMTP user name.
-				$usernameSmtp = 'AKIA5DC55FYN4CSLNN6G';
-				// Replace smtp_password with your Amazon SES SMTP password.
-				$passwordSmtp = 'BCKLn065TCA6CjmEi77OCho2uWwH9TGDxAWNl/BMNhGJ';
-				$mail->Username = $usernameSmtp;
-				$mail->Password = $passwordSmtp;
-
-	
+				
 				if($this->cuenta<>'')  $mail-> From =$this->cuenta;
 				else $mail-> From = 'info@cargaexpress.com.uy'; //direccion que ve el usuario
 				
@@ -77,7 +59,7 @@ Class Mail{
 				if($sent) return true;
 				else {
 					$errorDesc = $mail->ErrorInfo;
-					echo $errorDesc;
+					#echo $errorDesc;
 					return false;
 				}				
 	
