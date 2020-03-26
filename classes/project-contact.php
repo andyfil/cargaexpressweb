@@ -1,12 +1,13 @@
 
 <?php
+require '../../../classes/PHPMailer/src/Exception.php';
+require '../../../classes/PHPMailer/src/PHPMailer.php';
+require '../../../classes/PHPMailer/src/SMTP.php';
 
-/*use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+
 
 if(isset($_POST['email'])){
 
@@ -50,11 +51,11 @@ if(isset($_POST['email'])){
 		$mail->Body       = $bodyHtml;
 		$mail->AltBody    = $bodyText;
 		$sent = $mail->Send();
-		if($sent) {*/
+		if($sent) {
 		
 			echo "El mensaje ha sido enviado!";
 			return true;
-		/*}
+		}
 		else {
 			$errorDesc = $mail->ErrorInfo;
 			#echo $errorDesc;
@@ -64,6 +65,6 @@ if(isset($_POST['email'])){
 	
 	  }
 		
-}	*/
+}	
 ?>
                 
